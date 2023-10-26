@@ -1,3 +1,4 @@
+require_relative 'file_storage'
 class LibraryApp
   def initialize(books, people, rentals)
     @books = books
@@ -13,7 +14,12 @@ class LibraryApp
 
       if (1..7).include?(choice)
         handle_menu_option(choice, @books, @people, @rentals)
-         if choice == 7
+        if choice == 7
+          FileStorage.save_data('books', @books)
+          FileStorage.save_data('people', @people)
+          FileStorage.save_data('rentals', @rentals)
+          exit
+        end
       else
         puts 'Invalid choice. Please select a valid option (1-7).'
       end
