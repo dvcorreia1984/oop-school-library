@@ -13,7 +13,7 @@ class LibraryApp
 
       if (1..7).include?(choice)
         handle_menu_option(choice, @books, @people, @rentals)
-        break if choice == 7
+         if choice == 7
       else
         puts 'Invalid choice. Please select a valid option (1-7).'
       end
