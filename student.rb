@@ -17,4 +17,18 @@ class Student < Person
     @classroom = classroom
     classroom.add_student(self) unless classroom.students.include?(self)
   end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'classroom' => @classroom,
+      'age' => @age,
+      'name' => @name,
+      'parent_permission' => @parent_permission
+    }.to_json(*args)
+  end
+
+  def self.json_create(object)
+    new(object['classroom'], object['age'], object['name'], object['parent_permission'])
+  end
 end
